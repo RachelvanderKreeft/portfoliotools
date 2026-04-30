@@ -1,4 +1,11 @@
-#' Title
+#' Summarise a numeric column by group
+#'
+#' This function groups a data frame by a categorical variable and computes
+#' the mean, standard deviation, and number of observations for a specified
+#' numeric column within each group.
+#'
+#' It is designed as a simple, beginner-friendly wrapper around common
+#' dplyr summary operations.
 #'
 #' @param df A data frame containing the data.
 #' @param group A grouping variable (unquoted column name).

@@ -52,6 +52,20 @@ filter_range(df, age, 30, 70)
 #> 1  35    20
 #> 2  50    30
 #> 3  65    40
+
+
+# 3. select_columns
+
+df <- data.frame(
+    age = c(20, 30),
+    score = c(5, 6),
+    group = c("A", "B")
+  )
+
+select_columns(df, age, score)
+#>   age score
+#> 1  20     5
+#> 2  30     6
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?

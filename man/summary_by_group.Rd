@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary_by_group.R
 \name{summary_by_group}
 \alias{summary_by_group}
-\title{Title}
+\title{Summarise a numeric column by group}
 \usage{
 summary_by_group(df, group, value)
 }
@@ -17,7 +17,13 @@ summary_by_group(df, group, value)
 A data frame with one row per group and columns for mean, standard deviation, and sample size.
 }
 \description{
-Title
+This function groups a data frame by a categorical variable and computes
+the mean, standard deviation, and number of observations for a specified
+numeric column within each group.
+}
+\details{
+It is designed as a simple, beginner-friendly wrapper around common
+dplyr summary operations.
 }
 \examples{
 df <- data.frame(
