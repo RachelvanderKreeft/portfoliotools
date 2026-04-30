@@ -7,7 +7,16 @@
 
 <!-- badges: end -->
 
-The goal of portfoliotools is to …
+portfoliotools is a small R package that provides simple helper
+functions for data cleaning, filtering, summarising, and selecting
+columns. It is designed for beginner-friendly and consistent data
+manipulation workflows.  
+  
+This package contains four functions:  
+1. summary_by_group  
+2. filter_range  
+3. select_columns  
+4. drop_na_cols  
 
 ## Installation
 
@@ -18,14 +27,23 @@ You can install the development version of portfoliotools like so:
 devtools::install_github("RachelvanderKreeft/portfoliotools")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## Load portfoliotools package
 
 ``` r
-library(portfoliotools)
 
-# 1. summary_by_group
+library(portfoliotools)
+```
+
+## 1. summary_by_group
+
+This function groups a data frame by a categorical variable and computes
+the mean, standard deviation, and number of observations for a specified
+numeric column within each group.
+
+``` r
+
+## Summarise a numeric column by group
+
 df <- data.frame(
     Treatment = c("A", "A", "A", "B", "B", "B"),
     EPIC_TOT = c(10, 12, 14, 20, 18, 22)
@@ -37,9 +55,17 @@ summary_by_group(df, Treatment, EPIC_TOT)
 #>   <chr>     <dbl> <dbl> <int>
 #> 1 A            12     2     3
 #> 2 B            20     2     3
+```
 
+## 2. filter_range
 
-# 2. filter_range
+This function filters a data frame based on a numeric column, keeping
+only rows where the selected column falls within a specified range.
+Missing values in the selected column are automatically removed.
+
+``` r
+
+## Filter rows within a numeric range
 
 df <- data.frame(
     age = c(20, 35, 50, 65, 80),
@@ -52,9 +78,15 @@ filter_range(df, age, 30, 70)
 #> 1  35    20
 #> 2  50    30
 #> 3  65    40
+```
 
+## 3. select_columns
 
-# 3. select_columns
+This function selects one or more columns from a data frame.
+
+``` r
+
+## select one or more columns from a data frame.
 
 df <- data.frame(
     age = c(20, 30),
@@ -68,26 +100,23 @@ select_columns(df, age, score)
 #> 2  30     6
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## 4. drop_na_cols
+
+This function filters a data frame by removing rows that contain NA
+values in any of the specified columns.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+
+## Remove rows with missing values in selected columns
+
+df <- data.frame(
+  age = c(20, NA, 40),
+  score = c(10, 20, NA),
+  group = c("A", "B", "C")
+)
+
+# Remove rows with missing values in age or score
+drop_na_cols(df, age, score)
+#>   age score group
+#> 1  20    10     A
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.

@@ -1,9 +1,9 @@
 Package: portfoliotools
-Title: What the Package Does (One Line, Title Case)
+Title: Helper functions for data cleaning, filtering, summarising, and selecting columns.
 Version: 0.0.0.9000
 Authors@R: 
     person("Rachel", "van der Kreeft", , "rachel.vanderkreeft@student.hu.nl", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: portfoliotools is a small R package that provides simple helper functions for data cleaning, filtering, summarising, and selecting columns. It is designed for beginner-friendly and consistent data manipulation workflows.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
