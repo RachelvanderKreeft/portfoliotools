@@ -25,6 +25,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(portfoliotools)
 
+# 1. summary_by_group
 df <- data.frame(
     Treatment = c("A", "A", "A", "B", "B", "B"),
     EPIC_TOT = c(10, 12, 14, 20, 18, 22)
@@ -36,6 +37,21 @@ summary_by_group(df, Treatment, EPIC_TOT)
 #>   <chr>     <dbl> <dbl> <int>
 #> 1 A            12     2     3
 #> 2 B            20     2     3
+
+
+# 2. filter_range
+
+df <- data.frame(
+    age = c(20, 35, 50, 65, 80),
+    score = c(10, 20, 30, 40, 50)
+  )
+
+# Keep only ages between 30 and 70
+filter_range(df, age, 30, 70)
+#>   age score
+#> 1  35    20
+#> 2  50    30
+#> 3  65    40
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
