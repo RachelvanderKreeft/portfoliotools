@@ -1,5 +1,5 @@
 Package: portfoliotools
-Title: Helper functions for data cleaning, filtering, summarising, and selecting columns.
+Title: Helper functions for data cleaning, filtering, summarising, and selecting columns
 Version: 0.0.0.9000
 Authors@R: 
     person("Rachel", "van der Kreeft", , "rachel.vanderkreeft@student.hu.nl", role = c("aut", "cre"))
@@ -13,5 +13,8 @@ Imports:
     magrittr,
     stats
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr

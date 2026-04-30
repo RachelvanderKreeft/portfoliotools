@@ -34,30 +34,7 @@ devtools::install_github("RachelvanderKreeft/portfoliotools")
 library(portfoliotools)
 ```
 
-## 1. summary_by_group
-
-This function groups a data frame by a categorical variable and computes
-the mean, standard deviation, and number of observations for a specified
-numeric column within each group.
-
-``` r
-
-## Summarise a numeric column by group
-
-df <- data.frame(
-    Treatment = c("A", "A", "A", "B", "B", "B"),
-    EPIC_TOT = c(10, 12, 14, 20, 18, 22)
-  )
-
-summary_by_group(df, Treatment, EPIC_TOT)
-#> # A tibble: 2 × 4
-#>   Treatment  mean    sd     n
-#>   <chr>     <dbl> <dbl> <int>
-#> 1 A            12     2     3
-#> 2 B            20     2     3
-```
-
-## 2. filter_range
+## 1. filter_range
 
 This function filters a data frame based on a numeric column, keeping
 only rows where the selected column falls within a specified range.
@@ -80,6 +57,27 @@ filter_range(df, age, 30, 70)
 #> 3  65    40
 ```
 
+## 2. drop_na_cols
+
+This function filters a data frame by removing rows that contain NA
+values in any of the specified columns.
+
+``` r
+
+## Remove rows with missing values in selected columns
+
+df <- data.frame(
+  age = c(20, NA, 40),
+  score = c(10, 20, NA),
+  group = c("A", "B", "C")
+)
+
+# Remove rows with missing values in age or score
+drop_na_cols(df, age, score)
+#>   age score group
+#> 1  20    10     A
+```
+
 ## 3. select_columns
 
 This function selects one or more columns from a data frame.
@@ -100,23 +98,25 @@ select_columns(df, age, score)
 #> 2  30     6
 ```
 
-## 4. drop_na_cols
+## 4. summary_by_group
 
-This function filters a data frame by removing rows that contain NA
-values in any of the specified columns.
+This function groups a data frame by a categorical variable and computes
+the mean, standard deviation, and number of observations for a specified
+numeric column within each group.
 
 ``` r
 
-## Remove rows with missing values in selected columns
+## Summarise a numeric column by group
 
 df <- data.frame(
-  age = c(20, NA, 40),
-  score = c(10, 20, NA),
-  group = c("A", "B", "C")
-)
+    Treatment = c("A", "A", "A", "B", "B", "B"),
+    EPIC_TOT = c(10, 12, 14, 20, 18, 22)
+  )
 
-# Remove rows with missing values in age or score
-drop_na_cols(df, age, score)
-#>   age score group
-#> 1  20    10     A
+summary_by_group(df, Treatment, EPIC_TOT)
+#> # A tibble: 2 × 4
+#>   Treatment  mean    sd     n
+#>   <chr>     <dbl> <dbl> <int>
+#> 1 A            12     2     3
+#> 2 B            20     2     3
 ```

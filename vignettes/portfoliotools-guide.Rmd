@@ -1,0 +1,118 @@
+---
+title: "portfoliotools-guide"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{portfolioTools-guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+
+# load libraries
+library(portfoliotools)
+library(dplyr)
+
+```
+
+# portfolioTools
+portfoliotools is a small R package that provides simple helper functions
+for data cleaning, filtering, summarising, and selecting columns.
+It is designed for beginner-friendly and consistent data manipulation workflows.
+
+# Installation
+Install the package from GitHub:
+
+
+``` r
+
+devtools::install_github("RachelvanderKreeft/portfoliotools")
+
+```
+
+# Example dataset
+
+We will use a simple dataset:
+
+```{r}
+
+df <- data.frame(
+  age = c(20, 30, 40, NA),
+  score = c(10, 20, NA, 40),
+  group = c("A", "A", "B", "B")
+)
+
+df
+
+```
+
+
+## 1. Filter values in a range
+filter_range() keeps rows where a numeric column falls within a range.
+
+```{r}
+
+filter_range(df, age, 20, 40)
+
+```
+
+
+## 2. Remove rows with missing values
+drop_na_cols() removes rows where selected columns contain NA values.
+
+```{r}
+
+drop_na_cols(df, age, score)
+
+```
+
+
+## 3. Select specific columns
+select_columns() keeps only selected columns.
+
+```{r}
+
+select_columns(df, age, score)
+
+```
+
+
+## 4. Summarise by group
+summary_by_group() calculates mean, standard deviation and number of observations per group.
+
+```{r}
+
+summary_by_group(df, group, score)
+
+```
+
+
+## Workflow example
+These functions can be combined into a simple data pipeline:
+
+```{r}
+
+df %>%
+  filter_range(age, 20, 40) %>%
+  drop_na_cols(age, score) %>%
+  select_columns(age, score)
+
+```
+
+
+## Summary
+
+portfolioTools provides a simple toolkit for: \
+-filtering data \
+-cleaning missing values \
+-selecting columns \
+-summarising grouped data \
+\
+It is designed to support readable and consistent data analysis workflows in R. \
