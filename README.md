@@ -14,7 +14,8 @@ The goal of portfoliotools is to …
 You can install the development version of portfoliotools like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+
+devtools::install_github("RachelvanderKreeft/portfoliotools")
 ```
 
 ## Example
@@ -23,7 +24,18 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(portfoliotools)
-## basic example code
+
+df <- data.frame(
+    Treatment = c("A", "A", "A", "B", "B", "B"),
+    EPIC_TOT = c(10, 12, 14, 20, 18, 22)
+  )
+
+summary_by_group(df, Treatment, EPIC_TOT)
+#> # A tibble: 2 × 4
+#>   Treatment  mean    sd     n
+#>   <chr>     <dbl> <dbl> <int>
+#> 1 A            12     2     3
+#> 2 B            20     2     3
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
